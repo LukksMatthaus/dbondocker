@@ -1,0 +1,14 @@
+version: "2"
+services:
+  mariadb-dev:
+    image: mariadb
+    environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: holodome
+    ports:
+      - "3308:3306"
+  client:
+    image: mariadb
+    depends_on:
+      - mariadb-dev
+    command: mysql -uroot -ppassword -hmariadb-dev holodome
